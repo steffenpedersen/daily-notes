@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { createNote } from '../../store/actions/noteActions'
 
 // Use class based component, 
 // because we want a local state
@@ -17,7 +19,7 @@ class CreateNote extends Component {
     // Function for onSubmit event handler
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        this.props.createNote(this.state)
     }
     render() {
         return (
@@ -44,4 +46,15 @@ class CreateNote extends Component {
     }
 }
 
-export default CreateNote
+// We're mapping the dispatch to the props
+// This is done, so we can create a note
+// through the props
+const mapDispatchToProps = dispatch => {
+    return {
+        createNote: (note) => dispatch(createNote(note))
+    }
+}
+
+// We're connecting the CreateNote component
+// to the Redux dispatch with function connect()
+export default connect(null, mapDispatchToProps)(CreateNote)
