@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ProjectList from '../projects/ProjectList'
+import NoteList from '../notes/NoteList'
 import Notifications from './Notifications'
 
 // React Component classes have additional features  
@@ -9,7 +9,7 @@ class Dashboard extends Component {
             <div className="dashboard container">
                 <div className="row">
                     <div className="col s12 m6">
-                        <ProjectList />
+                        <NoteList />
                     </div>
                     <div className="col s12 m5 offset-m1">
                         <Notifications />
