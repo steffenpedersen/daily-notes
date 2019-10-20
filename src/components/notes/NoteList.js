@@ -1,12 +1,12 @@
 import React from 'react'
 import NoteSummery from './NoteSummery'
 
-const NoteList = ({ projects }) => {
+const NoteList = ({ notes }) => {
     return (
         <div className="project-list section">
-            {projects && projects.map(project => {
+            {notes && notes.map(note => {
                 return (
-                    <NoteSummery project={project} key={project.id} />
+                    <NoteSummery note={note} key={note.id} />
                 )
             })}
         </div>
