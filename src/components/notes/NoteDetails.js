@@ -1,22 +1,48 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 const NoteDetails = (props) => {
-    // id from the React Route loading the component
-    const id = props.match.params.id;
+  const { note } = props;
+  if (note) {
     return (
-        <div className="container section project-details">
+      <div className="container section project-details">
         <div className="card z-depth-0">
           <div className="card-content">
-            <span className="card-title">Note Title - { id }</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et labore quaerat quibusdam vel saepe, ab voluptate accusantium culpa nemo fuga earum? Soluta amet nobis officia sed neque fuga aperiam quia?</p>
+            <span className="card-title">{note.title}</span>
+            <p>{note.content}</p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
-            <div>Posted by User</div>
-            <div>19 October, 5pm</div>
+            <div>Posted by {note.authorFirstName} {note.authorLastName}</div>
+            <div>2nd September, 2am</div>
           </div>
         </div>
       </div>
-      )
+    )
+  } else {
+    return (
+      <div className="container center">
+        <p>Loading note...</p>
+      </div>
+    )
+  }
 }
 
-export default NoteDetails
+const mapStateToProps = (state, ownProps) => {
+  // id from the React Route loading the component
+  const id = ownProps.match.params.id;
+  const notes = state.firestore.data.notes;
+  // Get the individual note with the actual id
+  const note = notes ? notes[id] : null;
+  return {
+    note: note
+  }
+}
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{
+    collection: 'notes'
+  }])
+)(NoteDetails)
