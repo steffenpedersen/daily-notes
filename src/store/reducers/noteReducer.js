@@ -1,17 +1,16 @@
-const initState = {
-    notes: [
-        { id: '1', title: 'This is a test title', content: 'blah blah blah' },
-        { id: '2', title: 'This is a test title', content: 'blah blah blah' },
-        { id: '3', title: 'This is a test title', content: 'blah blah blah' }
-    ]
-}
+const initState = {}
 
 const noteReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'CREATE_NOTE':
-            console.log('create note', action.note);
+        case 'CREATE_NOTE_SUCCESS':
+            console.log('create note success', action.note);
+            return state
+        case 'CREATE_NOTE_ERROR':
+            console.log('create note error', action.error);
+            return state
+        default:
+            return state;
     }
-    return state;
 }
 
 export default noteReducer

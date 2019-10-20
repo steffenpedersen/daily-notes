@@ -10,8 +10,8 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 // This will give us the ability to interact with the Firebase API
 // inside our action creators and sync up with our Firebase store
-import { reduxFirestore, getFirebase } from 'react-redux-firebase'
-import { reactReduxFirebase, getFirestore } from 'redux-firestore'
+import { reduxFirestore, getFirestore } from 'redux-firestore';
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import firebaseConfig from './config/firebaseConfig'
 
 const store = createStore(
@@ -21,8 +21,8 @@ const store = createStore(
         // withExtraArgument gives us the ability to
         // pass in an extra argument to to our function 
         applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-        reduxFirestore(firebaseConfig),
-        reactReduxFirebase(firebaseConfig)
+        reactReduxFirebase(firebaseConfig),
+        reduxFirestore(firebaseConfig)
     )
 );
 
