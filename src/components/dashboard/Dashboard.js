@@ -30,7 +30,6 @@ class Dashboard extends Component {
 // This is done, so we can access the
 // notes inside this component
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         notes: state.firestore.ordered.notes
     }

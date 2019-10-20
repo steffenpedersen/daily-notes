@@ -19,7 +19,6 @@ class SignUp extends Component {
     // Function for onSubmit event handler
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
     }
     render() {
         return (
